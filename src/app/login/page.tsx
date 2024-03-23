@@ -8,10 +8,17 @@ export default function LoginForm() {
   const [password, setPassword] = useState("");
 
   const handleLogin = async () => {
-    await login({
-      email,
-      password,
-    });
+    try {
+      await login(
+        {
+          email,
+          password,
+        },
+        "credentials"
+      );
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   return (
@@ -19,6 +26,7 @@ export default function LoginForm() {
       <label>
         メールアドレス:
         <input
+          className="text-black"
           type="email"
           name="email"
           onChange={(e) => setEmail(e.target.value)}
@@ -27,6 +35,7 @@ export default function LoginForm() {
       <label>
         パスワード:
         <input
+          className="text-black"
           type="password"
           name="password"
           onChange={(e) => setPassword(e.target.value)}
