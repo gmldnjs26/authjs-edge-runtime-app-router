@@ -77,6 +77,8 @@ export const authConfig: NextAuthConfig = {
       if (isLoggedIn) {
         if (callbackUrl) {
           return Response.redirect(callbackUrl);
+        } else if (nextUrl.pathname === "/login") {
+          return Response.redirect(`${nextUrl.origin}/news`);
         } else {
           return true;
         }
